@@ -1,0 +1,26 @@
+.default {
+  @apply bg-gray text-white;
+}
+
+.type-text {
+  @apply inline-block rounded-sm;
+  @apply font-body font-semibold text-sm;
+  padding: 4px 8px;
+}
+
+.type-number {
+  @apply rounded-full h-6 w-6 inline-flex flex-row items-center justify-center;
+  @apply font-graph font-normal text-sm;
+}
+
+.blue {
+  @apply bg-blue-dark;
+}
+
+.green {
+  @apply bg-green;
+}
+
+.pink {
+  @apply bg-pink;
+}

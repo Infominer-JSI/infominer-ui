@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: "Open Sans";
+    font-weight: 700;
+    src: url("./assets/fonts/OpenSans-Bold.woff") format("woff"),
+      url("./assets/fonts/OpenSans-Bold.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: "Open Sans";
+    font-weight: 600;
+    src: url("./assets/fonts/OpenSans-SemiBold.woff") format("woff"),
+      url("./assets/fonts/OpenSans-SemiBold.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: "Open Sans";
+    font-weight: 500;
+    src: url("./assets/fonts/OpenSans-Regular.woff") format("woff"),
+      url("./assets/fonts/OpenSans-Regular.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: "Noto Sans";
+    font-weight: 700;
+    src: url("./assets/fonts/NotoSans-Bold.woff") format("woff"),
+      url("./assets/fonts/NotoSans-Bold.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: "Noto Sans";
+    font-weight: 500;
+    src: url("./assets/fonts/NotoSans.woff") format("woff"),
+      url("./assets/fonts/NotoSans.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: "Montserrat";
+    font-weight: 500;
+    src: url("./assets/fonts/Montserrat-Medium.woff") format("woff"),
+      url("./assets/fonts/Montserrat-Medium.woff2") format("woff2");
+  }
+}
