@@ -1,42 +1,101 @@
+/**
+ * Enables variable coloring with opacity.
+ * @param {String} variableName - The CSS variable name.
+ * @returns The function that allows opacity configuration.
+ */
+function withOpacity(variableName) {
+  return ({ opacityValue }) =>
+    opacityValue !== undefined
+      ? `rgba(var(${variableName}), ${opacityValue})`
+      : `rgba(var(${variableName}))`;
+}
+
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
-    colors: {
-      "blue-dark": "#03045E",
-      blue: "#0077B6",
-      "blue-light": "#90E0EF",
-      "gray-dark": "#00333D",
-      gray: "#6D8A90",
-      "gray-light": "#DAE1E3",
-      green: "#89C024",
-      pink: "#B60075",
-      white: "#FFFFFF",
-      "white-azure": "#F0FFFF",
-    },
     fontFamily: {
-      header: ["Montserrat"],
-      body: ["'Open Sans'"],
-      graph: ["'Noto Sans'"],
+      header: "var(--font-family-header)",
+      body: "var(--font-family-body)",
+      graph: "var(--font-family-graph)",
     },
     fontSize: {
       xs: ["10px"],
       sm: ["14px", "18px"],
-      base: ["16px", "24px"],
+      md: ["16px", "24px"],
       xl: ["20px", "25px"],
       "2xl": ["28px", "35px"],
       "3xl": ["36px", "45px"],
       "4xl": ["44px", "48px"],
+      button: ["14px", "24px"],
+    },
+    textColor: {
+      base: withOpacity("--color-text-base"),
+      muted: withOpacity("--color-text-muted"),
+      inverted: withOpacity("--color-text-inverted"),
+      disabled: withOpacity("--color-text-disabled"),
+      highlight: withOpacity("--color-text-highlight"),
+      utility: withOpacity("--color-text-utility"),
+      warning: withOpacity("--color-text-warning"),
+    },
+    screens: {
+      sm: "var(--screen-size-sm)",
+      md: "var(--screen-size-md)",
+      lg: "var(--screen-size-lg)",
+      xl: "var(--screen-size-xl)",
+      "2xl": "var(--screen-size-2xl)",
     },
     extend: {
-      screens: {
-        sm: "640px",
-        md: "768px",
-        lg: "1024px",
-        xl: "1200px",
-        "2xl": "1536px",
+      divideColor: {
+        DEFAULT: withOpacity("--color-divide-base"),
       },
-      dropShadow: {
-        DEFAULT: "drop-shadow(0 0 8 rgba(109,138,144,.25))",
+      boxShadow: {
+        DEFAULT: "0px 0px 8px rgba(var(--color-text-base), 0.25)",
+      },
+      animation: {
+        ping: "ping 1s cubic-bezier(0, 0, 0.2, 1) 4",
+      },
+      keyframes: {
+        ping: {
+          "75%, 100%": { transform: "scale(1.4)", opacity: 0 },
+        },
+      },
+      backgroundColor: {
+        skin: {
+          base: withOpacity("--color-background-base"),
+          inverted: withOpacity("--color-background-inverted"),
+          highlight: withOpacity("--color-background-highlight"),
+        },
+        pill: {
+          ready: withOpacity("--color-pill-ready"),
+          loading: withOpacity("--color-pill-loading"),
+          waiting: withOpacity("--color-pill-waiting"),
+          warning: withOpacity("--color-pill-warning"),
+        },
+        button: {
+          base: withOpacity("--color-button-base"),
+          muted: withOpacity("--color-button-muted"),
+          inactive: withOpacity("--color-button-inactive"),
+          active: withOpacity("--color-button-active"),
+          warning: withOpacity("--color-button-warning"),
+        },
+        input: {
+          base: withOpacity("--color-input-base"),
+        },
+        navbar: {
+          base: withOpacity("--color-navbar-base"),
+        },
+      },
+      borderColor: {
+        button: {
+          base: withOpacity("--color-button-base"),
+          muted: withOpacity("--color-button-muted"),
+          inactive: withOpacity("--color-button-inactive"),
+          active: withOpacity("--color-button-active"),
+          warning: withOpacity("--color-button-warning"),
+        },
+        input: {
+          base: withOpacity("--color-input-base"),
+        },
       },
     },
   },
