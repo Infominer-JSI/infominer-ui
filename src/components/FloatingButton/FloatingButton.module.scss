@@ -1,0 +1,30 @@
+.container {
+  @apply absolute bottom-4 right-10;
+  @apply inline-flex;
+}
+
+.pulse {
+  @apply animate-ping;
+  @apply absolute inline-flex h-full w-full;
+  @apply rounded-full bg-button-base opacity-75;
+}
+
+.button {
+  @apply flex flex-row items-center justify-center gap-2;
+  @apply bg-skin-base border-button-base text-highlight;
+  @apply rounded-full border-x border-y;
+  @apply shadow;
+  @apply z-10;
+}
+
+.small {
+  @apply p-3;
+}
+
+.medium {
+  @apply p-4;
+}
+
+.large {
+  @apply p-5;
+}
