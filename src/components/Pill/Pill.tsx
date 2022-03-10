@@ -10,7 +10,7 @@ import styles from "./Pill.module.scss";
 
 interface IPill {
   type: "text" | "number";
-  color?: "blue" | "green" | "pink";
+  status?: "ready" | "loading" | "waiting" | "warning";
   className?: string;
   children?: React.ReactNode;
 }
@@ -21,11 +21,11 @@ interface IPill {
 
 export default function Pill(props: IPill) {
   // get dataset information and set their state
-  const { type = "text", color, className, children } = props;
+  const { type = "text", status, className, children } = props;
 
-  const colorClass = getColorClass(color);
   const typeClass = getTypeClass(type);
-  const elementClass = cn(styles.default, colorClass, typeClass, className);
+  const statusClass = getStatusClass(status);
+  const elementClass = cn(statusClass, typeClass, className);
 
   return <span className={elementClass}>{children}</span>;
 }
@@ -34,16 +34,18 @@ export default function Pill(props: IPill) {
 // Define the helper functions
 //===============================================
 
-function getColorClass(color?: IPill["color"]) {
+function getStatusClass(color?: IPill["status"]) {
   switch (color) {
-    case "blue":
-      return styles.blue;
-    case "green":
-      return styles.green;
-    case "pink":
-      return styles.pink;
+    case "ready":
+      return styles.ready;
+    case "loading":
+      return styles.loading;
+    case "waiting":
+      return styles.waiting;
+    case "warning":
+      return styles.warning;
     default:
-      return null;
+      return styles.default;
   }
 }
 

@@ -73,7 +73,7 @@ interface IIcon {
     | "table"
     | "trash-can"
     | "xmark";
-  size?: "tiny" | "extra-small" | "small" | "regular" | "medium" | "large" | "extra-large";
+  size?: "tiny" | "xs" | "sm" | "base" | "md" | "lg" | "xl";
   className?: string;
 }
 
@@ -83,7 +83,7 @@ interface IIcon {
 
 export default function Icon(props: IIcon) {
   // get dataset information and set their state
-  const { size = "regular", type, className } = props;
+  const { size = "base", type, className } = props;
 
   // get the icon to be displayed
   const ReactIcon = getIcon(type);

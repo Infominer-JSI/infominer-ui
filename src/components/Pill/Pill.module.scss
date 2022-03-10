@@ -1,26 +1,27 @@
-.default {
-  @apply bg-gray text-white;
-}
-
 .type-text {
-  @apply inline-block rounded-sm;
+  @apply inline-block rounded-t rounded-b px-2 py-1;
   @apply font-body font-semibold text-sm;
-  padding: 4px 8px;
 }
 
 .type-number {
-  @apply rounded-full h-6 w-6 inline-flex flex-row items-center justify-center;
+  @apply h-6 w-6 rounded-full;
+  @apply inline-flex flex-row items-center justify-center;
   @apply font-graph font-normal text-sm;
 }
 
-.blue {
-  @apply bg-blue-dark;
+.ready {
+  @apply bg-pill-ready text-inverted;
 }
 
-.green {
-  @apply bg-green;
+.loading {
+  @apply bg-pill-loading text-base;
 }
 
-.pink {
-  @apply bg-pink;
+.default,
+.waiting {
+  @apply bg-pill-waiting text-base;
+}
+
+.warning {
+  @apply bg-pill-warning text-inverted;
 }
