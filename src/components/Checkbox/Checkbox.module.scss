@@ -1,0 +1,35 @@
+.container {
+  @apply cursor-pointer;
+  @apply flex flex-row items-center justify-start gap-1.5;
+  &.inline {
+    @apply inline-flex;
+  }
+  input[type="checkbox"] {
+    @apply w-px h-px overflow-hidden absolute hidden;
+  }
+}
+
+.checkbox {
+  @apply w-5 h-5 inline-flex justify-center items-center;
+  @apply rounded-t rounded-b border-x border-y border-button-base;
+  @apply bg-skin-base;
+
+  &.active .fill {
+    @apply block;
+  }
+
+  .fill {
+    @apply w-3 h-3;
+    @apply rounded-sm border-x border-y border-button-base;
+    @apply bg-button-base;
+    @apply hidden;
+  }
+}
+
+.label {
+  @apply font-body text-md text-base select-none;
+}
+
+.disabled {
+  @apply opacity-50 cursor-not-allowed;
+}
