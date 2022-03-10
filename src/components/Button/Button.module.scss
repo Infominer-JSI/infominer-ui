@@ -1,0 +1,42 @@
+.default {
+  @apply flex flex-row items-center justify-center gap-2;
+  @apply font-body font-semibold text-button;
+  @apply rounded border-x border-y;
+  @apply px-3 py-1.5;
+}
+
+.outline {
+  @apply bg-skin-base;
+  &.base {
+    @apply border-button-base text-utility;
+  }
+  &.muted {
+    @apply border-button-muted text-muted;
+  }
+  &.inactive {
+    @apply border-button-inactive text-disabled;
+  }
+  &.warning {
+    @apply border-button-warning text-warning;
+  }
+}
+
+.full {
+  @apply text-inverted;
+  &.base {
+    @apply bg-button-base border-button-base;
+  }
+  &.muted {
+    @apply bg-button-muted border-button-muted;
+  }
+  &.inactive {
+    @apply bg-button-inactive border-button-inactive text-muted;
+  }
+  &.warning {
+    @apply bg-button-warning border-button-warning;
+  }
+}
+
+.disabled {
+  @apply opacity-50 cursor-not-allowed;
+}
