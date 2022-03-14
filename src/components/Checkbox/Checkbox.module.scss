@@ -1,6 +1,7 @@
 .container {
-  @apply cursor-pointer;
   @apply flex flex-row items-center justify-start gap-1.5;
+  @apply h-6;
+  @apply cursor-pointer;
   &.inline {
     @apply inline-flex;
   }

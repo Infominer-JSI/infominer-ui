@@ -46,10 +46,10 @@ module.exports = {
     },
     extend: {
       divideColor: {
-        DEFAULT: withOpacity("--color-divide-base"),
+        DEFAULT: withOpacity("--color-divide-muted"),
       },
       boxShadow: {
-        DEFAULT: "0px 0px 8px rgba(var(--color-text-base), 0.25)",
+        DEFAULT: "0px 0px 8px rgba(var(--color-text-muted), 0.25)",
       },
       animation: {
         ping: "ping 1s cubic-bezier(0, 0, 0.2, 1) 4",

@@ -23,8 +23,8 @@
   @apply font-body text-md text-base;
   @apply bg-button-inactive bg-opacity-70;
   @apply border-x border-y border-button-inactive rounded outline-none;
+  @apply transition ease-in-out;
   @apply focus:shadow;
-  @apply transition;
 }
 
 .icon {

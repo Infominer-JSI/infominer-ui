@@ -1,5 +1,5 @@
 // import modules
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import cn from "classnames";
 
 // import styles
@@ -27,6 +27,10 @@ export default function Checkbox(props: ICheckbox) {
   const { label, inline = true, checked, disabled = false, className, onChange } = props;
 
   const [isChecked, setIsChecked] = useState(checked ?? false);
+
+  useEffect(() => {
+    setIsChecked(!!checked);
+  }, [checked]);
 
   const containerStyle = cn(styles.container, {
     [styles.disabled]: disabled,

@@ -51,6 +51,7 @@ export default function Button(props: IButton) {
 
   // assign the button style
   const buttonStyle = cn(styles.default, variantClass, typeClass, className, {
+    [styles["icon-only"]]: !text,
     [styles.disabled]: disabled,
   });
   return (

@@ -40,3 +40,7 @@
 .disabled {
   @apply opacity-50 cursor-not-allowed;
 }
+
+.icon-only {
+  @apply px-3 py-3;
+}
