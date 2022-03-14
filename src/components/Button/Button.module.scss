@@ -1,5 +1,5 @@
 .default {
-  @apply flex flex-row items-center justify-center gap-2;
+  @apply flex flex-row items-center justify-between gap-2;
   @apply font-body font-semibold text-button;
   @apply rounded border-x border-y;
   @apply px-3 py-1.5;

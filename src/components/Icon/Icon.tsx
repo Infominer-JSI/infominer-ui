@@ -32,6 +32,7 @@ import { ReactComponent as MagnifyingGlass } from "assets/icons/magnifying-glass
 import { ReactComponent as Plus } from "assets/icons/plus.svg";
 import { ReactComponent as Sort } from "assets/icons/sort.svg";
 import { ReactComponent as Star } from "assets/icons/star.svg";
+import { ReactComponent as SquarePollHorizontal } from "assets/icons/square-poll-horizontal.svg";
 import { ReactComponent as Table } from "assets/icons/table.svg";
 import { ReactComponent as TrashCan } from "assets/icons/trash-can.svg";
 import { ReactComponent as XMark } from "assets/icons/xmark.svg";
@@ -70,6 +71,7 @@ interface IIcon {
     | "plus"
     | "sort"
     | "star"
+    | "square-poll"
     | "table"
     | "trash-can"
     | "xmark";
@@ -154,6 +156,8 @@ function getIcon(type: IIcon["type"]) {
       return Sort;
     case "star":
       return Star;
+    case "square-poll":
+      return SquarePollHorizontal;
     case "table":
       return Table;
     case "trash-can":
