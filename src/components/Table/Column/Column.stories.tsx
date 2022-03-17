@@ -11,6 +11,13 @@ import Column from "./Column";
 const storyComponent = {
   component: Column,
   title: "Components/Table/Column",
+  decorators: [
+    (Story: any) => (
+      <div style={{ width: "200px" }}>
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 export default storyComponent;

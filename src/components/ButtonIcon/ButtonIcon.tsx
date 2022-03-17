@@ -45,9 +45,9 @@ export default function ButtonIcon(props: IButtonIcon) {
   const SelectedIcon = getIcon(icon, size);
 
   // assign the button style
-  const buttonStyle = cn(styles.default, variantClass, typeClass, sizeClass, className);
+  const buttonClass = cn(styles.default, variantClass, typeClass, sizeClass, className);
   return (
-    <button className={buttonStyle} onClick={!disabled ? onClick : undefined} disabled={disabled}>
+    <button className={buttonClass} onClick={!disabled ? onClick : undefined} disabled={disabled}>
       {SelectedIcon}
     </button>
   );

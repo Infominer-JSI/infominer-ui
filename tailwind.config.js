@@ -78,6 +78,11 @@ module.exports = {
           active: withOpacity("--color-button-active"),
           warning: withOpacity("--color-button-warning"),
         },
+        dropdown: {
+          base: withOpacity("--color-dropdown-base"),
+          selected: withOpacity("--color-dropdown-selected"),
+          hover: withOpacity("--color-dropdown-hover"),
+        },
         input: {
           base: withOpacity("--color-input-base"),
         },

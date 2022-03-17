@@ -1,0 +1,43 @@
+.container {
+  @apply inline-block relative;
+  @apply font-semibold;
+  @apply transition ease-in-out;
+  &.disabled {
+    @apply opacity-50 cursor-not-allowed;
+  }
+  &.active > * {
+    @apply shadow;
+  }
+}
+
+.items {
+  @apply absolute w-auto h-auto my-1 py-1;
+  @apply flex flex-col flex-nowrap min-w-max;
+  @apply border-x border-y rounded border-button-base;
+  @apply bg-skin-base;
+  &.position-left {
+    @apply left-0;
+  }
+  &.position-right {
+    @apply right-0;
+  }
+  &.checkbox {
+    @apply px-3 py-2;
+    @apply gap-2;
+  }
+}
+
+.item {
+  @apply px-3 py-2;
+  @apply cursor-pointer;
+  @apply transition ease-in-out;
+  @apply hover:bg-dropdown-hover;
+  &.selected {
+    @apply transition-none;
+    @apply bg-dropdown-selected;
+  }
+}
+
+.item-text {
+  @apply font-body font-semibold text-sm;
+}

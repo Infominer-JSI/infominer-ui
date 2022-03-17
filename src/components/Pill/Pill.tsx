@@ -34,8 +34,8 @@ export default function Pill(props: IPill) {
 // Define the helper functions
 //===============================================
 
-function getStatusClass(color?: IPill["status"]) {
-  switch (color) {
+function getStatusClass(status?: IPill["status"]) {
+  switch (status) {
     case "ready":
       return styles.ready;
     case "loading":

@@ -1,8 +1,10 @@
 // import modules
+import React from "react";
 import cn from "classnames";
 
 // import components
 import Icon from "components/Icon";
+import Pill from "components/Pill";
 
 // import styles
 import styles from "./Button.module.scss";
@@ -12,11 +14,12 @@ import styles from "./Button.module.scss";
 //===============================================
 
 interface IButton {
-  text?: string;
+  children?: React.ReactNode;
   icon?: "none" | "plus" | "xmark" | "angle-left" | "angle-down" | "database" | "drag";
   iconPosition?: "left" | "right";
   type?: "full" | "outline";
   variant?: "base" | "muted" | "inactive" | "warning";
+  number?: number | null | undefined;
   disabled?: boolean;
   draggable?: boolean;
   className?: string;
@@ -31,7 +34,8 @@ interface IButton {
 export default function Button(props: IButton) {
   // get dataset information and set their state
   const {
-    text,
+    children,
+    number = null,
     icon = "none",
     iconPosition = "left",
     type = "full",
@@ -50,18 +54,23 @@ export default function Button(props: IButton) {
   const SelectedIcon = getIcon(icon);
 
   // assign the button style
-  const buttonStyle = cn(styles.default, variantClass, typeClass, className, {
-    [styles["icon-only"]]: !text,
+  const buttonClass = cn(styles.default, variantClass, typeClass, className, {
+    [styles["icon-only"]]: !children,
   });
   return (
     <button
-      className={buttonStyle}
+      className={buttonClass}
       onDrag={!disabled ? onDrag : undefined}
       onClick={!disabled ? onClick : undefined}
       draggable={!disabled ? draggable : false}
       disabled={disabled}>
+      {number !== null ? (
+        <Pill type="number" status="loading">
+          {number}
+        </Pill>
+      ) : null}
       {iconPosition === "left" && SelectedIcon}
-      {text}
+      {children}
       {iconPosition === "right" && SelectedIcon}
     </button>
   );

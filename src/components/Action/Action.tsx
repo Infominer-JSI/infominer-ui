@@ -31,11 +31,11 @@ export default function Action(props: IAction) {
   const SelectedIcon = getIcon(icon);
 
   // assign the button style
-  const buttonStyle = cn(styles.default, className, {
+  const buttonClass = cn(styles.default, className, {
     [styles.active]: active,
   });
   return (
-    <button className={buttonStyle} onClick={onClick}>
+    <button className={buttonClass} onClick={onClick}>
       {SelectedIcon}
       {text}
     </button>
