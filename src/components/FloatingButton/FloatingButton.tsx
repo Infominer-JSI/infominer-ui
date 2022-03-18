@@ -12,7 +12,7 @@ import styles from "./FloatingButton.module.scss";
 //===============================================
 
 interface IFloatingButton {
-  icon?: "plus" | "chart";
+  icon?: "plus" | "chart" | "cross";
   size?: "small" | "medium";
   className?: string;
   onClick: () => void;
@@ -22,21 +22,20 @@ interface IFloatingButton {
 // Define the component
 //===============================================
 
-export default function Button(props: IFloatingButton) {
+export default function FloatingButton(props: IFloatingButton) {
   // get dataset information and set their state
   const { icon = "plus", size = "medium", className, onClick } = props;
 
-  // set the button classes
-  const sizeClass = getSizeClass(size);
   // get the icon component
   const SelectedIcon = getIcon(icon);
 
-  // assign the button style
-  const buttonStyle = cn(styles.button, sizeClass, className);
+  // set the button classes
+  const sizeClass = getSizeClass(size);
+  const buttonClass = cn(styles["button"], sizeClass, className);
   return (
-    <div className={styles.container}>
-      <span className={styles.pulse}></span>
-      <button className={buttonStyle} onClick={onClick}>
+    <div className={styles["container"]}>
+      <span className={styles["container__pulse"]}></span>
+      <button className={buttonClass} onClick={onClick}>
         {SelectedIcon}
       </button>
     </div>
@@ -46,10 +45,10 @@ export default function Button(props: IFloatingButton) {
 function getSizeClass(size: IFloatingButton["size"]) {
   switch (size) {
     case "small":
-      return styles.small;
+      return styles["size--small"];
     case "medium":
     default:
-      return styles.medium;
+      return styles["size--medium"];
   }
 }
 
@@ -57,8 +56,10 @@ function getIcon(icon?: IFloatingButton["icon"]) {
   switch (icon) {
     case "plus":
       return <Icon type="plus" size="xl" />;
+    case "cross":
+      return <Icon type="xmark" size="xl" />;
     case "chart":
-      return <Icon type="xmark" size="lg" />;
+      return <Icon type="chart-column" size="xl" />;
     default:
       return null;
   }

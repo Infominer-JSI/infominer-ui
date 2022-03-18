@@ -1,5 +1,5 @@
 // import modules
-import React, { ChangeEvent, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import cn from "classnames";
 
 // import components
@@ -43,24 +43,24 @@ export default function Input(props: IInput) {
   // validate the input string
   const message = validate ? validate(input) : null;
 
-  const containerStyle = cn(styles.container, {
-    [styles.disabled]: disabled,
+  const containerClass = cn(styles["container"], {
+    [styles["container--disabled"]]: disabled,
   });
 
-  const inputBlockStyle = cn(styles["input-block"], {
-    [styles.warning]: message,
+  const inputBlockClass = cn(styles["input-block"], {
+    [styles["input-block--warning"]]: message,
   });
 
   return (
-    <div className={containerStyle}>
+    <div className={containerClass}>
       {label && (
-        <label htmlFor={hash} className={styles.label}>
+        <label htmlFor={hash} className={styles["input-label"]}>
           {label}
         </label>
       )}
-      <div className={inputBlockStyle} id={hash}>
+      <div className={inputBlockClass} id={hash}>
         <input
-          className={styles.input}
+          className={styles["input"]}
           type="text"
           value={input}
           placeholder={placeholder}
@@ -68,10 +68,10 @@ export default function Input(props: IInput) {
           disabled={disabled}
         />
         {/* warning exclamation */}
-        {message && <Icon type="exclamation" size="lg" className={styles.icon} />}
+        {message && <Icon type="exclamation" size="lg" className={styles["icon"]} />}
       </div>
       {/* warning message */}
-      {message && <span className={styles.message}>{message}</span>}
+      {message && <span className={styles["message"]}>{message}</span>}
     </div>
   );
 }

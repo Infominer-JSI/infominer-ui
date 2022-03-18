@@ -9,7 +9,7 @@ import styles from "./Pill.module.scss";
 //===============================================
 
 interface IPill {
-  type: "text" | "number";
+  type: "block" | "round";
   status?: "ready" | "loading" | "waiting" | "warning";
   className?: string;
   children?: React.ReactNode;
@@ -21,13 +21,13 @@ interface IPill {
 
 export default function Pill(props: IPill) {
   // get dataset information and set their state
-  const { type = "text", status, className, children } = props;
+  const { type = "block", status, className, children } = props;
 
   const typeClass = getTypeClass(type);
   const statusClass = getStatusClass(status);
-  const elementClass = cn(statusClass, typeClass, className);
+  const pillClass = cn(styles.pill, statusClass, typeClass, className);
 
-  return <span className={elementClass}>{children}</span>;
+  return <span className={pillClass}>{children}</span>;
 }
 
 //===============================================
@@ -37,24 +37,24 @@ export default function Pill(props: IPill) {
 function getStatusClass(status?: IPill["status"]) {
   switch (status) {
     case "ready":
-      return styles.ready;
+      return styles["status--ready"];
     case "loading":
-      return styles.loading;
+      return styles["status--loading"];
     case "waiting":
-      return styles.waiting;
+      return styles["status--waiting"];
     case "warning":
-      return styles.warning;
+      return styles["status--warning"];
     default:
-      return styles.default;
+      return styles["status--default"];
   }
 }
 
 function getTypeClass(type?: IPill["type"]) {
   switch (type) {
-    case "text":
-      return styles["type-text"];
-    case "number":
-      return styles["type-number"];
+    case "block":
+      return styles["type--block"];
+    case "round":
+      return styles["type--round"];
     default:
       return null;
   }

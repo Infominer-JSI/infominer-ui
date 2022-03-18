@@ -30,10 +30,10 @@ export default function Action(props: IAction) {
   // get the icon component
   const SelectedIcon = getIcon(icon);
 
-  // assign the button style
-  const buttonClass = cn(styles.default, className, {
-    [styles.active]: active,
+  const buttonClass = cn(styles["action"], className, {
+    [styles["action--active"]]: active,
   });
+
   return (
     <button className={buttonClass} onClick={onClick}>
       {SelectedIcon}

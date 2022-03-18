@@ -28,3 +28,13 @@ Default.args = {
   variant: "base",
   children: "Click me!",
 };
+
+export const WithNumber = Template.bind({});
+WithNumber.args = {
+  type: "outline",
+  icon: "angle-down",
+  iconPosition: "right",
+  variant: "base",
+  children: "Click me!",
+  number: 3,
+};

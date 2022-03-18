@@ -17,7 +17,7 @@ interface IButton {
   children?: React.ReactNode;
   icon?: "none" | "plus" | "xmark" | "angle-left" | "angle-down" | "database" | "drag";
   iconPosition?: "left" | "right";
-  type?: "full" | "outline";
+  type?: "full" | "outline" | "borderless";
   variant?: "base" | "muted" | "inactive" | "warning";
   number?: number | null | undefined;
   disabled?: boolean;
@@ -47,14 +47,12 @@ export default function Button(props: IButton) {
     onDrag,
   } = props;
 
-  // set the button classes
-  const variantClass = getVariantClass(variant);
-  const typeClass = getTypeClass(type);
   // get the icon component
   const SelectedIcon = getIcon(icon);
 
-  // assign the button style
-  const buttonClass = cn(styles.default, variantClass, typeClass, className, {
+  const typeClass = getTypeClass(type);
+  const variantClass = getVariantClass(variant);
+  const buttonClass = cn(styles["button"], variantClass, typeClass, className, {
     [styles["icon-only"]]: !children,
   });
   return (
@@ -64,13 +62,15 @@ export default function Button(props: IButton) {
       onClick={!disabled ? onClick : undefined}
       draggable={!disabled ? draggable : false}
       disabled={disabled}>
-      {number !== null ? (
-        <Pill type="number" status="loading">
-          {number}
-        </Pill>
-      ) : null}
       {iconPosition === "left" && SelectedIcon}
-      {children}
+      <span className={styles["button__content"]}>
+        {number !== null ? (
+          <Pill type="round" status="loading">
+            {number}
+          </Pill>
+        ) : null}
+        {children}
+      </span>
       {iconPosition === "right" && SelectedIcon}
     </button>
   );
@@ -79,13 +79,13 @@ export default function Button(props: IButton) {
 function getVariantClass(color?: IButton["variant"]) {
   switch (color) {
     case "base":
-      return styles.base;
+      return styles["variant--base"];
     case "muted":
-      return styles.muted;
+      return styles["variant--muted"];
     case "inactive":
-      return styles.inactive;
+      return styles["variant--inactive"];
     case "warning":
-      return styles.warning;
+      return styles["variant--warning"];
     default:
       return null;
   }
@@ -93,10 +93,12 @@ function getVariantClass(color?: IButton["variant"]) {
 
 function getTypeClass(type: IButton["type"]) {
   switch (type) {
-    case "outline":
-      return styles.outline;
     case "full":
-      return styles.full;
+      return styles["type--full"];
+    case "outline":
+      return styles["type--outline"];
+    case "borderless":
+      return styles["type--borderless"];
   }
 }
 

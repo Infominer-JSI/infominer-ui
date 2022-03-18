@@ -1,32 +1,32 @@
-.default {
+.icon {
   @apply inline-block h-auto w-auto;
   fill: currentColor;
 }
 
-.tiny {
+.size--tiny {
   @apply w-2 h-2;
 }
 
-.xs {
+.size--xs {
   @apply w-2.5 h-2.5;
 }
 
-.sm {
+.size--sm {
   @apply w-3 h-3;
 }
 
-.base {
+.size--base {
   @apply w-3.5 h-3.5;
 }
 
-.md {
+.size--md {
   @apply w-4 h-4;
 }
 
-.lg {
+.size--lg {
   @apply w-5 h-5;
 }
 
-.xl {
+.size--xl {
   @apply w-6 h-6;
 }

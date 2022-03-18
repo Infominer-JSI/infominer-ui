@@ -90,7 +90,7 @@ export default function Icon(props: IIcon) {
   // get the icon to be displayed
   const ReactIcon = getIcon(type);
 
-  const iconClass = cn(styles.default, getSize(size), className);
+  const iconClass = cn(styles["icon"], getSize(size), className);
   return ReactIcon && <ReactIcon className={iconClass} />;
 }
 
@@ -170,5 +170,5 @@ function getIcon(type: IIcon["type"]) {
 }
 
 function getSize(size: IIcon["size"]) {
-  return size && styles[size];
+  return size && styles[`size--${size}`];
 }

@@ -19,7 +19,7 @@ module.exports = {
       graph: "var(--font-family-graph)",
     },
     fontSize: {
-      xs: ["10px"],
+      xs: ["10px", "14px"],
       sm: ["14px", "18px"],
       md: ["16px", "24px"],
       xl: ["20px", "25px"],
@@ -77,6 +77,7 @@ module.exports = {
           inactive: withOpacity("--color-button-inactive"),
           active: withOpacity("--color-button-active"),
           warning: withOpacity("--color-button-warning"),
+          blank: withOpacity("--color-button-blank"),
         },
         dropdown: {
           base: withOpacity("--color-dropdown-base"),
@@ -97,9 +98,16 @@ module.exports = {
           inactive: withOpacity("--color-button-inactive"),
           active: withOpacity("--color-button-active"),
           warning: withOpacity("--color-button-warning"),
+          blank: withOpacity("--color-button-blank"),
         },
         input: {
           base: withOpacity("--color-input-base"),
+        },
+        dropdown: {
+          divide: withOpacity("--color-dropdown-divide"),
+        },
+        divide: {
+          base: withOpacity("--color-divide-base"),
         },
       },
     },

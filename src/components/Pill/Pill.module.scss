@@ -1,27 +1,30 @@
-.type-text {
-  @apply inline-block rounded-t rounded-b px-2 py-1;
-  @apply font-body font-semibold text-sm;
-}
-
-.type-number {
-  @apply h-6 w-6 rounded-full;
+.pill {
+  @apply px-2 py-1;
   @apply inline-flex flex-row items-center justify-center;
-  @apply font-graph font-normal text-sm;
+  @apply font-body font-normal text-sm select-none;
 }
 
-.ready {
+.type--block {
+  @apply rounded-t rounded-b;
+}
+
+.type--round {
+  @apply rounded-full;
+}
+
+.status--ready {
   @apply bg-pill-ready text-inverted;
 }
 
-.loading {
+.status--loading {
   @apply bg-pill-loading text-base;
 }
 
-.default,
-.waiting {
+.status--default,
+.status--waiting {
   @apply bg-pill-waiting text-base;
 }
 
-.warning {
+.status--warning {
   @apply bg-pill-warning text-inverted;
 }

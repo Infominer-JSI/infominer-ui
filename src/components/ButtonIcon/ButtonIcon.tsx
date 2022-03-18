@@ -28,7 +28,7 @@ interface IButtonIcon {
 export default function ButtonIcon(props: IButtonIcon) {
   // get dataset information and set their state
   const {
-    icon,
+    icon = "plus",
     variant = "base",
     size = "medium",
     type = "full",
@@ -37,15 +37,13 @@ export default function ButtonIcon(props: IButtonIcon) {
     onClick,
   } = props;
 
-  // set the button classes
-  const variantClass = getVariantClass(variant);
-  const typeClass = getTypeClass(type);
-  const sizeClass = getSizeClass(size);
   // get the icon component
   const SelectedIcon = getIcon(icon, size);
 
-  // assign the button style
-  const buttonClass = cn(styles.default, variantClass, typeClass, sizeClass, className);
+  const typeClass = getTypeClass(type);
+  const sizeClass = getSizeClass(size);
+  const variantClass = getVariantClass(variant);
+  const buttonClass = cn(styles["button"], variantClass, typeClass, sizeClass, className);
   return (
     <button className={buttonClass} onClick={!disabled ? onClick : undefined} disabled={disabled}>
       {SelectedIcon}
@@ -56,13 +54,13 @@ export default function ButtonIcon(props: IButtonIcon) {
 function getVariantClass(color?: IButtonIcon["variant"]) {
   switch (color) {
     case "base":
-      return styles.base;
+      return styles["variant--base"];
     case "muted":
-      return styles.muted;
+      return styles["variant--muted"];
     case "inactive":
-      return styles.inactive;
+      return styles["variant--inactive"];
     case "warning":
-      return styles.warning;
+      return styles["variant--warning"];
     default:
       return null;
   }
@@ -71,21 +69,21 @@ function getVariantClass(color?: IButtonIcon["variant"]) {
 function getTypeClass(type: IButtonIcon["type"]) {
   switch (type) {
     case "outline":
-      return styles.outline;
+      return styles["type--outline"];
     case "full":
-      return styles.full;
+      return styles["type--full"];
   }
 }
 
 function getSizeClass(type: IButtonIcon["size"]) {
   switch (type) {
     case "small":
-      return styles.small;
+      return styles["size--small"];
     case "large":
-      return styles.large;
+      return styles["size--large"];
     case "medium":
     default:
-      return styles.medium;
+      return styles["size--medium"];
   }
 }
 

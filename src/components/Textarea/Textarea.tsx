@@ -51,24 +51,24 @@ export default function Textarea(props: ITextarea) {
   // validate the input string
   const message = validate ? validate(input) : null;
 
-  const containerStyle = cn(styles.container, {
-    [styles.disabled]: disabled,
+  const containerClass = cn(styles["container"], {
+    [styles["container--disabled"]]: disabled,
   });
 
-  const textBlockStyle = cn(styles["textarea-block"], {
-    [styles.warning]: message,
+  const textareaBlockClass = cn(styles["textarea-block"], {
+    [styles["textarea-block--warning"]]: message,
   });
 
   return (
-    <div className={containerStyle}>
+    <div className={containerClass}>
       {label && (
-        <label htmlFor={hash} className={styles.label}>
+        <label htmlFor={hash} className={styles["textarea__label"]}>
           {label}
         </label>
       )}
-      <div className={textBlockStyle} id={hash}>
+      <div className={textareaBlockClass} id={hash}>
         <textarea
-          className={styles.textarea}
+          className={styles["textarea"]}
           value={input}
           placeholder={placeholder}
           onChange={!disabled ? onChangeInner : () => {}}
@@ -76,10 +76,10 @@ export default function Textarea(props: ITextarea) {
           rows={rows}
         />
         {/* warning exclamation */}
-        {message && <Icon type="exclamation" size="lg" className={styles.icon} />}
+        {message && <Icon type="exclamation" size="lg" className={styles["icon"]} />}
       </div>
       {/* warning message */}
-      {message && <span className={styles.message}>{message}</span>}
+      {message && <span className={styles["message"]}>{message}</span>}
     </div>
   );
 }

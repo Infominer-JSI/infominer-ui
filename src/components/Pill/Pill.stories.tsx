@@ -22,14 +22,7 @@ export default storyComponent;
 type Props = React.ComponentProps<typeof Pill>;
 const Template: Story<Props> = (args: Props) => <Pill {...args} />;
 
-export const Text = Template.bind({});
-Text.args = {
-  type: "text",
+export const Default = Template.bind({});
+Default.args = {
   children: "Badge",
-};
-
-export const Number = Template.bind({});
-Number.args = {
-  type: "number",
-  children: 3,
 };

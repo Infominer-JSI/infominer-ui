@@ -1,21 +1,23 @@
 .container {
-  @apply flex flex-col space-y-0.5;
-  &.disabled {
+  @apply flex flex-col space-y-1;
+
+  &.container--disabled {
     @apply opacity-50;
   }
 }
 
 .input-block {
   @apply relative w-full;
-  &.warning {
+
+  &.input-block--warning {
     .input {
       @apply border-button-warning;
     }
   }
 }
 
-.label {
-  @apply block font-body text-md font-semibold text-base select-none;
+.input-label {
+  @apply block font-body text-sm font-semibold text-base select-none;
 }
 
 .input {
@@ -33,5 +35,5 @@
 
 .message {
   @apply block;
-  @apply font-body font-semibold text-md text-warning select-none;
+  @apply font-body font-semibold text-sm text-warning select-none;
 }
