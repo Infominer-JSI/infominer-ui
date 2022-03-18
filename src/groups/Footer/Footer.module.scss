@@ -1,0 +1,10 @@
+.footer {
+  @apply flex flex-row items-center justify-between;
+  @apply text-sm text-base;
+  @apply bg-skin-base;
+  @apply px-6 py-4;
+}
+
+.copyright {
+  @apply flex flex-row items-center justify-center gap-2;
+}
