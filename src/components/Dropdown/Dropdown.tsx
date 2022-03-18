@@ -1,5 +1,5 @@
 // import modules
-import React, { useState, useEffect, useRef, MouseEventHandler } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import cn from "classnames";
 
 // import components
@@ -13,28 +13,30 @@ import styles from "./Dropdown.module.scss";
 // Define the state interfaces
 //===============================================
 
+type TItem = { id: string; label: string; checked?: boolean; className?: string };
+type TAction = { id: string; label: string; className?: string; onClick: () => void };
+
 interface IDropdown {
-  buttonText: string;
+  placeholder: React.ReactNode;
+  buttonType?: "outline" | "borderless";
+  dynamicPlaceholder?: boolean;
   disabled?: boolean;
   className?: string;
-  multiselect?: boolean;
   listPosition?: "left" | "right";
-  itemType?: "list" | "checkbox";
-  items: { id: string; label: string; checked?: boolean }[];
+  dropdownTitle?: string;
+  items: TItem[];
+  actions?: TAction[];
+  listType?: "list" | "checkbox";
   onClick?: (state: any) => void;
 }
 
-type IOnItemClick = (id: IDropdown["items"][0]["id"], state: boolean) => void;
+type IOnItemClick = (id: TItem["id"], state: boolean) => void;
 
 //===============================================
 // Define the component
 //===============================================
 
-function createListItem(
-  item: IDropdown["items"][0],
-  itemType: IDropdown["itemType"],
-  onItemClick: IOnItemClick,
-) {
+function createListItem(item: TItem, itemType: IDropdown["listType"], onItemClick: IOnItemClick) {
   switch (itemType) {
     case "checkbox":
       return (
@@ -42,15 +44,15 @@ function createListItem(
           key={item.id}
           label={item.label}
           checked={item.checked}
-          className={styles["item-text"]}
+          className={styles["list-item__text"]}
           inline={false}
           onChange={(state: boolean) => onItemClick(item.id, state)}
         />
       );
 
     case "list":
-      const itemClass = cn(styles.item, styles["item-text"], {
-        [styles.selected]: itemType === "list" && item.checked,
+      const itemClass = cn(styles["list-item"], styles["list-item__text"], item.className, {
+        [styles["list-item--selected"]]: itemType === "list" && item.checked,
       });
       return (
         <div key={item.id} className={itemClass} onClick={() => onItemClick(item.id, true)}>
@@ -62,16 +64,29 @@ function createListItem(
   }
 }
 
+function createActionItem(item: TAction, itemType: IDropdown["listType"]) {
+  const actionClass = cn(styles["list-item"], styles["list-item__text"], item.className);
+  return (
+    <div key={item.id} className={actionClass} onClick={item.onClick}>
+      {item.label}
+    </div>
+  );
+}
+
 export default function Dropdown(props: IDropdown) {
   // get dataset information and set their state
   const {
-    buttonText,
-    className,
-    disabled,
-    itemType = "list",
+    placeholder,
+    buttonType = "outline",
+    dynamicPlaceholder = true,
+    disabled = false,
+    dropdownTitle,
+    listType = "list",
     listPosition = "left",
     items,
+    actions,
     onClick,
+    className,
   } = props;
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -97,10 +112,24 @@ export default function Dropdown(props: IDropdown) {
     setIsOpen(false);
   }, [disabled]);
 
+  // get the button label
+  let buttonLabel: string | null = null;
+  if (dynamicPlaceholder) {
+    // generate the button label
+    const checkedItems = internalItems.filter((item) => item.checked).map((item) => item.label);
+    buttonLabel =
+      checkedItems.length < 3
+        ? checkedItems.join(", ")
+        : `${checkedItems.slice(0, 2).join(", ")},...`;
+  }
+
+  const numberOfSelected =
+    listType === "checkbox" ? internalItems.filter((item) => item.checked).length : null;
+
   const onItemClick: IOnItemClick = (id, state) => {
     setInternalItems((prevState) => {
       const idx = prevState.map((item) => item.id).indexOf(id);
-      if (itemType === "list") {
+      if (listType === "list") {
         prevState.forEach((item) => (item.checked = false));
       }
       const newState = [
@@ -114,38 +143,46 @@ export default function Dropdown(props: IDropdown) {
       return newState;
     });
 
-    if (itemType === "list") {
+    if (listType === "list") {
       // close the list
       setIsOpen(false);
     }
   };
 
-  const numberOfSelected =
-    itemType === "checkbox" ? internalItems.filter((item) => item.checked).length : null;
-
   const containerClass = cn(styles.container, className, {
-    [styles.disabled]: disabled,
-    [styles.active]: isOpen,
+    [styles["container--active"]]: isOpen,
+  });
+  const dropdownClass = cn(styles.dropdown, styles[`dropdown--position--${listPosition}`]);
+  const listItemsClass = cn(styles["list-items"], {
+    [styles["list-type--checkbox"]]: listType === "checkbox",
   });
 
-  const listClass = cn(styles.items, styles[`position-${listPosition}`], {
-    [styles.checkbox]: itemType === "checkbox",
-  });
+  const listActionClass = cn(styles["list-actions"]);
 
   return (
     <div className={containerClass} ref={containerRef}>
       <Button
-        type="outline"
+        className={styles.button}
+        type={buttonType}
         variant="base"
         icon="angle-down"
         iconPosition="right"
+        disabled={disabled}
         number={numberOfSelected}
-        onClick={!disabled ? () => setIsOpen(!isOpen) : undefined}>
-        {buttonText}
+        onClick={() => setIsOpen(!isOpen)}>
+        {buttonLabel ? buttonLabel : placeholder}
       </Button>
       {isOpen ? (
-        <div className={listClass}>
-          {internalItems.map((item) => createListItem(item, itemType, onItemClick))}
+        <div className={dropdownClass}>
+          {dropdownTitle && <span className={styles["dropdown__title"]}>{dropdownTitle}</span>}
+          <div className={listItemsClass}>
+            {internalItems.map((item) => createListItem(item, listType, onItemClick))}
+          </div>
+          {actions && (
+            <div className={listActionClass}>
+              {actions.map((item) => createActionItem(item, listType))}
+            </div>
+          )}
         </div>
       ) : null}
     </div>
