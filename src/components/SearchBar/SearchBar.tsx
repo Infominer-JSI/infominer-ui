@@ -13,6 +13,7 @@ import styles from "./SearchBar.module.scss";
 //===============================================
 
 interface ISearchBar {
+  size?: "medium" | "large";
   input?: string;
   disabled?: boolean;
   placeholder?: string;
@@ -23,20 +24,21 @@ interface ISearchBar {
 // Define the component
 //===============================================
 
-function iconContainer(
+function clickableIcon(
   iconType: "magnifying-glass" | "xmark",
-  className: string,
+  size: "lg",
+  className?: string,
   onClick?: () => void,
 ) {
   return (
     <span className={className} onClick={onClick}>
-      <Icon type={iconType} size="lg" />
+      <Icon type={iconType} size={size} />
     </span>
   );
 }
 
 export default function SearchBar(props: ISearchBar) {
-  const { placeholder = "Search", disabled, onChange } = props;
+  const { placeholder = "Search", size = "medium", disabled, onChange } = props;
 
   const [input, setInput] = useState(props.input ?? "");
 
@@ -51,15 +53,16 @@ export default function SearchBar(props: ISearchBar) {
     onChange("");
   };
 
-  const searchbarClass = cn(styles["searchbar"], {
+  const sizeClass = getSizeClass(size);
+  const searchbarClass = cn(styles["searchbar"], sizeClass, {
     [styles["searchbar--disabled"]]: disabled,
   });
   const searchIconClass = cn(styles["icon"], styles["icon--search"]);
   const clearIconClass = cn(styles["icon"], styles["icon--clear"]);
 
   // create the icons
-  const SearchIcon = iconContainer("magnifying-glass", searchIconClass);
-  const ClearIcon = iconContainer("xmark", clearIconClass, resetInput);
+  const SearchIcon = clickableIcon("magnifying-glass", "lg", searchIconClass);
+  const ClearIcon = clickableIcon("xmark", "lg", clearIconClass, resetInput);
 
   return (
     <div className={searchbarClass}>
@@ -76,4 +79,14 @@ export default function SearchBar(props: ISearchBar) {
       {input && ClearIcon}
     </div>
   );
+}
+
+function getSizeClass(type: ISearchBar["size"]) {
+  switch (type) {
+    case "large":
+      return styles["size--large"];
+    case "medium":
+    default:
+      return styles["size--medium"];
+  }
 }

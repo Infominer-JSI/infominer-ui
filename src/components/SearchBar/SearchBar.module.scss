@@ -3,10 +3,22 @@
   &.searchbar--disabled {
     @apply opacity-50;
   }
+
+  &.size--medium {
+    .input {
+      @apply h-[38px] py-3;
+    }
+  }
+
+  &.size--large {
+    .input {
+      @apply h-[46px] py-4;
+    }
+  }
 }
 
 .input {
-  @apply w-full h-11 px-4 pl-12 pr-12;
+  @apply w-full pl-12 pr-12;
   @apply font-body text-md text-base;
   @apply bg-skin-base;
   @apply border-x border-y border-searchbar-base rounded outline-none;
