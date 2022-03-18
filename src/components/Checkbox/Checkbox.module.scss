@@ -2,11 +2,17 @@
   @apply flex flex-row items-center justify-start gap-1.5;
   @apply h-6;
   @apply cursor-pointer;
-  &.inline {
-    @apply inline-flex;
-  }
+
   input[type="checkbox"] {
     @apply w-px h-px overflow-hidden absolute hidden;
+  }
+
+  &.container--inline {
+    @apply inline-flex;
+  }
+
+  .container--disabled {
+    @apply opacity-50 cursor-not-allowed;
   }
 }
 
@@ -15,11 +21,11 @@
   @apply rounded-t rounded-b border-x border-y border-button-base;
   @apply bg-skin-base;
 
-  &.active .fill {
+  &.checkbox--active .checkbox__fill {
     @apply visible;
   }
 
-  .fill {
+  .checkbox__fill {
     @apply block w-3 h-3;
     @apply rounded-sm border-x border-y border-button-base;
     @apply bg-button-base;
@@ -27,10 +33,6 @@
   }
 }
 
-.label {
+.checkbox__label {
   @apply font-body text-md text-base select-none;
-}
-
-.disabled {
-  @apply opacity-50 cursor-not-allowed;
 }

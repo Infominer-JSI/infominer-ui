@@ -30,11 +30,11 @@ export default function Column(props: IColumn) {
   const SelectedIcon = getIcon(sort);
 
   // assign the button style
-  const buttonStyle = cn(styles.default, className, {
-    [styles.active]: sort !== "none",
+  const buttonClass = cn(styles["column"], className, {
+    [styles["column--active"]]: sort !== "none",
   });
   return (
-    <button className={buttonStyle} onClick={onClick}>
+    <button className={buttonClass} onClick={onClick}>
       {text}
       {SelectedIcon}
     </button>

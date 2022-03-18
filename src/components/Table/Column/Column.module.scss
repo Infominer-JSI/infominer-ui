@@ -1,12 +1,12 @@
-.default {
+.column {
   @apply w-full;
   @apply flex flex-row items-center justify-between;
-  @apply font-body font-normal text-sm text-muted;
+  @apply font-body font-normal text-sm text-muted select-none;
   @apply transition ease-in-out;
   @apply hover:text-highlight;
   @apply cursor-pointer;
-}
 
-.active {
-  @apply text-highlight;
+  &.column--active {
+    @apply text-highlight;
+  }
 }

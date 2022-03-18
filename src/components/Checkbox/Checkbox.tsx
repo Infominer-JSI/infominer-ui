@@ -32,15 +32,6 @@ export default function Checkbox(props: ICheckbox) {
     setIsChecked(!!checked);
   }, [checked]);
 
-  const containerClass = cn(styles.container, {
-    [styles.disabled]: disabled,
-    [styles.inline]: inline,
-  });
-  const checkboxClass = cn(styles.checkbox, className, {
-    [styles.active]: isChecked,
-  });
-  const labelClass = cn(styles.label, className);
-
   const onChangeInner = () =>
     !disabled
       ? () => {
@@ -49,11 +40,20 @@ export default function Checkbox(props: ICheckbox) {
         }
       : () => {};
 
+  const containerClass = cn(styles.container, {
+    [styles["container--disabled"]]: disabled,
+    [styles["container--inline"]]: inline,
+  });
+  const checkboxClass = cn(styles["checkbox"], className, {
+    [styles["checkbox--active"]]: isChecked,
+  });
+  const labelClass = cn(styles["checkbox__label"], className);
+
   return (
     <label className={containerClass}>
       <input type="checkbox" onChange={onChangeInner()} />
       <span className={checkboxClass} aria-hidden="true">
-        <span className={styles.fill} />
+        <span className={styles["checkbox__fill"]} />
       </span>
       {label && <span className={labelClass}>{label}</span>}
     </label>
