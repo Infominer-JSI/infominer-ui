@@ -1,0 +1,65 @@
+.button {
+  @apply inline-flex flex-row items-center justify-between gap-2;
+  @apply font-body font-semibold text-button select-none;
+  @apply rounded border-x border-y;
+  @apply disabled:opacity-50 disabled:cursor-not-allowed;
+
+  &.button--icon-only {
+    @apply px-3 py-3;
+  }
+
+  .button__content {
+    @apply flex flex-row gap-2 justify-start items-center;
+  }
+}
+
+.type--outline {
+  @apply bg-button-blank;
+  @apply px-3 py-1.5;
+
+  &.variant--base {
+    @apply border-button-base text-utility;
+  }
+  &.variant--muted {
+    @apply border-button-muted text-muted;
+  }
+  &.variant--inactive {
+    @apply border-button-inactive text-disabled;
+  }
+  &.variant--warning {
+    @apply border-button-warning text-warning;
+  }
+}
+
+.type--full {
+  @apply text-inverted;
+  @apply px-3 py-1.5;
+  &.variant--base {
+    @apply bg-button-base border-button-base;
+  }
+  &.variant--muted {
+    @apply bg-button-muted border-button-muted;
+  }
+  &.variant--inactive {
+    @apply bg-button-inactive border-button-inactive text-muted;
+  }
+  &.variant--warning {
+    @apply bg-button-warning border-button-warning;
+  }
+}
+
+.type--borderless {
+  @apply bg-button-blank border-button-blank;
+  &.variant--base {
+    @apply text-utility;
+  }
+  &.variant--muted {
+    @apply text-muted;
+  }
+  &.variant--inactive {
+    @apply text-disabled;
+  }
+  &.variant--warning {
+    @apply text-warning;
+  }
+}

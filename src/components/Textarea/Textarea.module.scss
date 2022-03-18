@@ -1,0 +1,36 @@
+.container {
+  @apply flex flex-col space-y-0.5;
+  &.container--disabled {
+    @apply opacity-50;
+  }
+}
+
+.textarea__label {
+  @apply block font-body text-sm font-semibold text-base select-none;
+}
+
+.textarea-block {
+  @apply relative w-full;
+  &.textarea-block--warning {
+    .textarea {
+      @apply border-button-warning;
+    }
+  }
+  .textarea {
+    @apply w-full px-4 p-2.5 pr-8;
+    @apply font-body text-md text-base;
+    @apply bg-button-inactive bg-opacity-70;
+    @apply border-x border-y border-button-inactive rounded outline-none;
+    @apply transition ease-in-out;
+    @apply focus:shadow;
+  }
+
+  .icon {
+    @apply absolute top-3 right-3 text-warning select-none;
+  }
+}
+
+.message {
+  @apply block;
+  @apply font-body font-semibold text-sm text-warning select-none;
+}

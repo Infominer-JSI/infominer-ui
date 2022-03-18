@@ -1,0 +1,11 @@
+.action {
+  @apply inline-flex flex-row items-center justify-center gap-1;
+  @apply font-body font-normal text-sm text-muted select-none;
+  @apply transition ease-in-out;
+  @apply hover:text-utility;
+  @apply cursor-pointer;
+
+  &.action--active {
+    @apply font-semibold text-highlight;
+  }
+}

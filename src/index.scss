@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    // define the colors
+    --color-blue-dark: 3, 4, 94; // #03045E
+    --color-blue: 0, 119, 182; // #0077B6
+    --color-blue-light: 144, 224, 239; // #90E0EF
+    --color-gray-dark: 0, 51, 61; // #00333D
+    --color-gray: 109, 138, 144; // #6D8A90
+    --color-gray-light: 218, 225, 227; // #DAE1E3
+    --color-green: 137, 192, 36; // #89C024
+    --color-pink: 182, 0, 117; // #B60075
+    --color-white-azure: 240, 255, 255; // #F0FFFF
+    --color-white: 255, 255, 255; // #FFFFFF
+
+    // screen variables
+    --screen-size-sm: 640px;
+    --screen-size-md: 768px;
+    --screen-size-lg: 1024px;
+    --screen-size-xl: 1200px;
+    --screen-size-2xl: 1536px;
+
+    // color text variables
+    --color-text-base: var(--color-gray-dark);
+    --color-text-muted: var(--color-gray);
+    --color-text-inverted: var(--color-white);
+    --color-text-disabled: var(--color-gray-light);
+    --color-text-highlight: var(--color-blue-dark);
+    --color-text-utility: var(--color-blue);
+    --color-text-warning: var(--color-pink);
+
+    // color background variables
+    --color-background-base: var(--color-white);
+    --color-background-inverted: var(--color-gray-light);
+    --color-background-highlight: var(--color-white-azure);
+
+    // color pill variables
+    --color-pill-ready: var(--color-green);
+    --color-pill-loading: var(--color-blue-light);
+    --color-pill-waiting: var(--color-gray-light);
+    --color-pill-warning: var(--color-pink);
+
+    // color button variables
+    --color-button-base: var(--color-blue);
+    --color-button-muted: var(--color-gray);
+    --color-button-inactive: var(--color-gray-light);
+    --color-button-active: var(--color-blue-dark);
+    --color-button-warning: var(--color-pink);
+    --color-button-blank: var(--color-white);
+
+    // color dropdown variables
+    --color-dropdown-base: var(--color-white);
+    --color-dropdown-selected: var(--color-blue-light);
+    --color-dropdown-hover: var(--color-white-azure);
+    --color-dropdown-divide: var(--color-gray-light);
+
+    // color separator variables
+    --color-divide-base: var(--color-gray-light);
+
+    // color navbar variables
+    --color-navbar-base: var(--color-blue-dark);
+
+    // color input variables
+    --color-input-base: var(--color-gray-light);
+
+    // font family variables
+    --font-family-header: "Montserrat";
+    --font-family-body: "Open Sans";
+    --font-family-graph: "Noto Sans";
+  }
+
+  @font-face {
+    font-family: "Montserrat";
+    font-weight: 500;
+    src: url("./assets/fonts/Montserrat-Medium.woff") format("woff"),
+      url("./assets/fonts/Montserrat-Medium.woff2") format("woff2");
+  }
+
+  @font-face {
+    font-family: "Open Sans";
+    font-weight: 700;
+    src: url("./assets/fonts/OpenSans-Bold.woff") format("woff"),
+      url("./assets/fonts/OpenSans-Bold.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: "Open Sans";
+    font-weight: 600;
+    src: url("./assets/fonts/OpenSans-SemiBold.woff") format("woff"),
+      url("./assets/fonts/OpenSans-SemiBold.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: "Open Sans";
+    font-weight: 500;
+    src: url("./assets/fonts/OpenSans-Regular.woff") format("woff"),
+      url("./assets/fonts/OpenSans-Regular.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: "Noto Sans";
+    font-weight: 700;
+    src: url("./assets/fonts/NotoSans-Bold.woff") format("woff"),
+      url("./assets/fonts/NotoSans-Bold.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: "Noto Sans";
+    font-weight: 500;
+    src: url("./assets/fonts/NotoSans.woff") format("woff"),
+      url("./assets/fonts/NotoSans.woff2") format("woff2");
+  }
+}

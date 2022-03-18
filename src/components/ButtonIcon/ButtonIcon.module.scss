@@ -1,0 +1,61 @@
+.button {
+  @apply flex flex-row items-center justify-center;
+  @apply rounded border-x border-y;
+  @apply transition ease-in-out;
+  @apply disabled:opacity-50 disabled:cursor-not-allowed;
+  @apply text-button;
+}
+
+.type--outline {
+  @apply bg-skin-base;
+
+  &.variant--base {
+    @apply border-button-base text-utility;
+    @apply hover:border-button-active hover:text-highlight;
+    @apply disabled:hover:border-button-base disabled:hover:text-utility;
+  }
+  &.variant--muted {
+    @apply border-button-muted text-muted;
+  }
+  &.variant--inactive {
+    @apply border-button-inactive text-disabled;
+    @apply hover:border-button-muted hover:text-muted;
+    @apply disabled:hover:border-button-inactive disabled:hover:text-disabled;
+  }
+  &.variant--warning {
+    @apply border-button-warning text-warning;
+  }
+}
+
+.type--full {
+  @apply text-inverted;
+
+  &.variant--base {
+    @apply bg-button-base border-button-base;
+    @apply hover:bg-button-active hover:border-button-active;
+    @apply disabled:hover:bg-button-base disabled:hover:border-button-base;
+  }
+  &.variant--muted {
+    @apply bg-button-muted border-button-muted;
+  }
+  &.variant--inactive {
+    @apply bg-button-inactive border-button-inactive text-muted;
+    @apply hover:bg-button-muted hover:border-button-muted hover:text-inverted;
+    @apply disabled:hover:bg-button-inactive disabled:hover:border-button-inactive disabled:hover:text-muted;
+  }
+  &.variant--warning {
+    @apply bg-button-warning border-button-warning;
+  }
+}
+
+.size--small {
+  @apply p-1.5;
+}
+
+.size--medium {
+  @apply p-2;
+}
+
+.size--large {
+  @apply p-2.5;
+}
