@@ -35,7 +35,7 @@ export default function FloatingButton(props: IFloatingButton) {
   return (
     <div className={styles["container"]}>
       <span className={styles["container__pulse"]}></span>
-      <button className={buttonClass} onClick={onClick}>
+      <button className={buttonClass} onClick={onClick} aria-label="Action Button">
         {SelectedIcon}
       </button>
     </div>
