@@ -64,7 +64,7 @@ export default function Input(props: IInput) {
           type="text"
           value={input}
           placeholder={placeholder}
-          onChange={!disabled ? onChangeInner : () => {}}
+          onChange={!disabled ? onChangeInner : undefined}
           disabled={disabled}
         />
         {/* warning exclamation */}

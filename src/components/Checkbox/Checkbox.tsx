@@ -32,13 +32,12 @@ export default function Checkbox(props: ICheckbox) {
     setIsChecked(!!checked);
   }, [checked]);
 
-  const onChangeInner = () =>
-    !disabled
-      ? () => {
-          setIsChecked(!isChecked);
-          onChange(!isChecked);
-        }
-      : () => {};
+  const onChangeInner = !disabled
+    ? () => {
+        setIsChecked(!isChecked);
+        onChange(!isChecked);
+      }
+    : undefined;
 
   const containerClass = cn(styles.container, {
     [styles["container--disabled"]]: disabled,
@@ -51,7 +50,7 @@ export default function Checkbox(props: ICheckbox) {
 
   return (
     <label className={containerClass}>
-      <input type="checkbox" onChange={onChangeInner()} />
+      <input type="checkbox" onChange={onChangeInner} />
       <span className={checkboxClass} aria-hidden="true">
         <span className={styles["checkbox__fill"]} />
       </span>

@@ -71,7 +71,7 @@ export default function Textarea(props: ITextarea) {
           className={styles["textarea"]}
           value={input}
           placeholder={placeholder}
-          onChange={!disabled ? onChangeInner : () => {}}
+          onChange={!disabled ? onChangeInner : undefined}
           disabled={disabled}
           rows={rows}
         />
