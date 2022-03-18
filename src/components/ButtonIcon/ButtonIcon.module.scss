@@ -1,5 +1,5 @@
 .button {
-  @apply flex flex-row items-center justify-center;
+  @apply inline-flex flex-row items-center justify-center;
   @apply rounded border-x border-y;
   @apply transition ease-in-out;
   @apply disabled:opacity-50 disabled:cursor-not-allowed;
