@@ -1,0 +1,6 @@
+.actionbar {
+  @apply flex flex-row items-center justify-center gap-4;
+  @apply border-b border-divide-base;
+  @apply bg-skin-base;
+  @apply py-2;
+}
