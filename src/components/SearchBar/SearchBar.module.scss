@@ -1,0 +1,28 @@
+.searchbar {
+  @apply relative;
+  &.searchbar--disabled {
+    @apply opacity-50;
+  }
+}
+
+.input {
+  @apply w-full h-11 px-4 pl-12 pr-12;
+  @apply font-body text-md text-base;
+  @apply bg-skin-base;
+  @apply border-x border-y border-searchbar-base rounded outline-none;
+  @apply transition ease-in-out;
+  @apply focus:shadow;
+}
+
+.icon {
+  @apply absolute top-0 bottom-0;
+  @apply flex flex-col justify-center items-center;
+  @apply text-highlight select-none;
+  &.icon--search {
+    @apply left-3;
+  }
+  &.icon--clear {
+    @apply right-3;
+    @apply cursor-pointer;
+  }
+}

@@ -103,6 +103,9 @@ module.exports = {
         input: {
           base: withOpacity("--color-input-base"),
         },
+        searchbar: {
+          base: withOpacity("--color-searchbar-base"),
+        },
         dropdown: {
           divide: withOpacity("--color-dropdown-divide"),
         },
