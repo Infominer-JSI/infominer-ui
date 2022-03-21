@@ -53,10 +53,30 @@ module.exports = {
       },
       animation: {
         ping: "ping 1s cubic-bezier(0, 0, 0.2, 1) 4",
+        dim: "dim 0.3s ease-in-out forwards",
+        undim: "undim 0.3s ease-in-out forwards",
+        slideIn: "slideIn 0.3s ease-in-out forwards",
+        slideOut: "slideOut 0.3s ease-in-out forwards",
       },
       keyframes: {
         ping: {
           "75%, 100%": { transform: "scale(1.4)", opacity: 0 },
+        },
+        dim: {
+          from: { backgroundColor: "rgba(var(--color-overlay-base), 0)" },
+          to: { backgroundColor: "rgba(var(--color-overlay-base), 0.5)" },
+        },
+        undim: {
+          from: { backgroundColor: "rgba(var(--color-overlay-base), 0.5)" },
+          to: { backgroundColor: "rgba(var(--color-overlay-base), 0)" },
+        },
+        slideIn: {
+          "0%": { right: "calc(-100%)" },
+          "100%": { right: 0 },
+        },
+        slideOut: {
+          "0%": { right: 0 },
+          "100%": { right: "calc(-100%)" },
         },
       },
       backgroundColor: {
@@ -89,6 +109,13 @@ module.exports = {
         },
         navbar: {
           base: withOpacity("--color-navbar-base"),
+        },
+        overlay: {
+          base: withOpacity("--color-overlay-base"),
+        },
+        scrollbar: {
+          track: withOpacity("--color-scrollbar-track"),
+          thumb: withOpacity("--color-scrollbar-thumb"),
         },
       },
       borderColor: {

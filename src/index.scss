@@ -23,6 +23,12 @@
     --screen-size-xl: 1200px;
     --screen-size-2xl: 1536px;
 
+    // scrollbar variables
+    --width-scrollbar-sm: 6px;
+    --width-scrollbar-md: 12px;
+    --color-scrollbar-track: var(--color-gray-light);
+    --color-scrollbar-thumb: var(--color-blue);
+
     // color text variables
     --color-text-base: var(--color-gray-dark);
     --color-text-muted: var(--color-gray);
@@ -69,6 +75,9 @@
     // color button variables
     --color-searchbar-base: var(--color-blue);
 
+    // color slideout variables
+    --color-overlay-base: var(--color-gray-dark);
+
     // font family variables
     --font-family-header: "Montserrat";
     --font-family-body: "Open Sans";
@@ -111,5 +120,17 @@
     font-weight: 500;
     src: url("./assets/fonts/NotoSans.woff") format("woff"),
       url("./assets/fonts/NotoSans.woff2") format("woff2");
+  }
+
+  *::-webkit-scrollbar {
+    width: var(--width-scrollbar-sm);
+  }
+
+  *::-webkit-scrollbar-track {
+    @apply bg-scrollbar-track;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    @apply bg-scrollbar-thumb;
   }
 }

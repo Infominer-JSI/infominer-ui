@@ -33,7 +33,7 @@ interface IDropdown {
 type IOnItemClick = (id: TItem["id"], state: boolean) => void;
 
 //===============================================
-// Define the component
+// Define the helper functions
 //===============================================
 
 function createListItem(item: TItem, itemType: IDropdown["listType"], onItemClick: IOnItemClick) {
@@ -72,6 +72,10 @@ function createActionItem(item: TAction, itemType: IDropdown["listType"]) {
     </div>
   );
 }
+
+//===============================================
+// Define the component
+//===============================================
 
 export default function Dropdown(props: IDropdown) {
   // get dataset information and set their state
