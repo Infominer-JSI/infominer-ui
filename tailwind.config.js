@@ -55,8 +55,10 @@ module.exports = {
         ping: "ping 1s cubic-bezier(0, 0, 0.2, 1) 4",
         dim: "dim 0.3s ease-in-out forwards",
         undim: "undim 0.3s ease-in-out forwards",
-        slideIn: "slideIn 0.3s ease-in-out forwards",
-        slideOut: "slideOut 0.3s ease-in-out forwards",
+        appear: "appear 0.3s ease-in-out forwards",
+        disappear: "disappear 0.3s ease-in-out forwards",
+        "slide-right-in": "slide-right-in 0.3s ease-in-out forwards",
+        "slide-right-out": "slide-right-out 0.3s ease-in-out forwards",
       },
       keyframes: {
         ping: {
@@ -70,13 +72,21 @@ module.exports = {
           from: { backgroundColor: "rgba(var(--color-overlay-base), 0.5)" },
           to: { backgroundColor: "rgba(var(--color-overlay-base), 0)" },
         },
-        slideIn: {
+        "slide-right-in": {
           "0%": { right: "calc(-100%)" },
           "100%": { right: 0 },
         },
-        slideOut: {
+        "slide-right-out": {
           "0%": { right: 0 },
           "100%": { right: "calc(-100%)" },
+        },
+        appear: {
+          "0%": { opacity: 0 },
+          "100%": { opacity: 1 },
+        },
+        disappear: {
+          "0%": { opacity: 1 },
+          "100%": { opacity: 0 },
         },
       },
       backgroundColor: {
