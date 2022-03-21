@@ -27,7 +27,11 @@ export default function Footer() {
         2018-2021 AILAB JSI. All rights reserved.
       </span>
       <span>
-        <a href="https://github.com/Infominer-JSI" rel="noreferrer" target="_blank">
+        <a
+          rel="noreferrer"
+          target="_blank"
+          href="https://github.com/Infominer-JSI"
+          aria-label="Go to the Infominer GitHub page">
           <Icon type="github" size="xl" />
         </a>
       </span>

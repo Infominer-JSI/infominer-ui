@@ -5,13 +5,13 @@ import cn from "classnames";
 import Icon from "components/Icon";
 
 // import styles
-import styles from "./ButtonIcon.module.scss";
+import styles from "./IconButton.module.scss";
 
 //===============================================
 // Define the state interfaces
 //===============================================
 
-interface IButtonIcon {
+interface IIconButton {
   icon: "plus" | "xmark" | "download" | "delete" | "edit" | "sort" | "filter" | "save";
   variant?: "base" | "muted" | "inactive" | "warning";
   size?: "small" | "medium" | "large";
@@ -25,7 +25,7 @@ interface IButtonIcon {
 // Define the component
 //===============================================
 
-export default function ButtonIcon(props: IButtonIcon) {
+export default function IconButton(props: IIconButton) {
   // get dataset information and set their state
   const {
     icon = "plus",
@@ -45,13 +45,17 @@ export default function ButtonIcon(props: IButtonIcon) {
   const variantClass = getVariantClass(variant);
   const buttonClass = cn(styles["button"], variantClass, typeClass, sizeClass, className);
   return (
-    <button className={buttonClass} onClick={!disabled ? onClick : undefined} disabled={disabled}>
+    <button
+      className={buttonClass}
+      onClick={!disabled ? onClick : undefined}
+      aria-label="Icon Button"
+      disabled={disabled}>
       {SelectedIcon}
     </button>
   );
 }
 
-function getVariantClass(color?: IButtonIcon["variant"]) {
+function getVariantClass(color?: IIconButton["variant"]) {
   switch (color) {
     case "base":
       return styles["variant--base"];
@@ -66,7 +70,7 @@ function getVariantClass(color?: IButtonIcon["variant"]) {
   }
 }
 
-function getTypeClass(type: IButtonIcon["type"]) {
+function getTypeClass(type: IIconButton["type"]) {
   switch (type) {
     case "outline":
       return styles["type--outline"];
@@ -75,7 +79,7 @@ function getTypeClass(type: IButtonIcon["type"]) {
   }
 }
 
-function getSizeClass(type: IButtonIcon["size"]) {
+function getSizeClass(type: IIconButton["size"]) {
   switch (type) {
     case "small":
       return styles["size--small"];
@@ -87,7 +91,7 @@ function getSizeClass(type: IButtonIcon["size"]) {
   }
 }
 
-function getIcon(icon: IButtonIcon["icon"], size?: IButtonIcon["size"]) {
+function getIcon(icon: IIconButton["icon"], size?: IIconButton["size"]) {
   const iconSize = size === "small" ? "xs" : size === "medium" ? "base" : "md";
   console.log(iconSize);
   switch (icon) {
