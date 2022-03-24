@@ -7,6 +7,10 @@
   @apply cursor-pointer;
 
   &.column--active {
-    @apply text-highlight;
+    @apply font-semibold text-highlight;
+  }
+  &.column--disabled {
+    @apply opacity-50 hover:text-muted;
+    @apply cursor-default;
   }
 }

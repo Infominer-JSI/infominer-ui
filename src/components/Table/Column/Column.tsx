@@ -14,8 +14,9 @@ import styles from "./Column.module.scss";
 interface IColumn {
   text?: string;
   sort?: "none" | "asc" | "desc";
-  className?: string;
+  disabled?: boolean;
   onClick?: () => void;
+  className?: string;
 }
 
 //===============================================
@@ -24,7 +25,7 @@ interface IColumn {
 
 export default function Column(props: IColumn) {
   // get dataset information and set their state
-  const { text, sort = "none", className, onClick } = props;
+  const { text, sort = "none", disabled, onClick, className } = props;
 
   // get the icon component
   const SelectedIcon = getIcon(sort);
@@ -32,9 +33,10 @@ export default function Column(props: IColumn) {
   // assign the button style
   const buttonClass = cn(styles["column"], className, {
     [styles["column--active"]]: sort !== "none",
+    [styles["column--disabled"]]: disabled,
   });
   return (
-    <button className={buttonClass} onClick={onClick}>
+    <button className={buttonClass} onClick={!disabled ? onClick : undefined}>
       {text}
       {SelectedIcon}
     </button>
