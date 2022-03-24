@@ -1,4 +1,4 @@
-export const loremIpsum = `
+export const loremIpsum: string = `
     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
     Maecenas tristique eleifend ligula vel hendrerit. Donec
     facilisis ipsum quis volutpat pulvinar. Aenean feugiat,
