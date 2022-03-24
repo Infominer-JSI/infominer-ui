@@ -18,16 +18,17 @@ type TAction = { id: string; label: string; className?: string; onClick: () => v
 
 interface IDropdown {
   placeholder: React.ReactNode;
-  buttonType?: "outline" | "borderless";
-  dynamicPlaceholder?: boolean;
-  disabled?: boolean;
-  className?: string;
-  listPosition?: "left" | "right";
-  dropdownTitle?: string;
   items: TItem[];
   actions?: TAction[];
+  dropdownTitle?: string;
+  dynamicTitle?: boolean;
   listType?: "list" | "checkbox";
+  listPosition?: "left" | "right";
+  buttonType?: "outline" | "borderless";
+  noHightlights?: boolean;
+  disabled?: boolean;
   onClick?: (state: any) => void;
+  className?: string;
 }
 
 type IOnItemClick = (id: TItem["id"], state: boolean) => void;
@@ -36,7 +37,12 @@ type IOnItemClick = (id: TItem["id"], state: boolean) => void;
 // Define the helper functions
 //===============================================
 
-function createListItem(item: TItem, itemType: IDropdown["listType"], onItemClick: IOnItemClick) {
+function createListItem(
+  item: TItem,
+  itemType: IDropdown["listType"],
+  onItemClick: IOnItemClick,
+  noHightlights: boolean,
+) {
   switch (itemType) {
     case "checkbox":
       return (
@@ -52,7 +58,7 @@ function createListItem(item: TItem, itemType: IDropdown["listType"], onItemClic
 
     case "list":
       const itemClass = cn(styles["list-item"], styles["list-item__text"], item.className, {
-        [styles["list-item--selected"]]: itemType === "list" && item.checked,
+        [styles["list-item--selected"]]: itemType === "list" && item.checked && !noHightlights,
       });
       return (
         <div key={item.id} className={itemClass} onClick={() => onItemClick(item.id, true)}>
@@ -64,10 +70,14 @@ function createListItem(item: TItem, itemType: IDropdown["listType"], onItemClic
   }
 }
 
-function createActionItem(item: TAction, itemType: IDropdown["listType"]) {
+function createActionItem(
+  item: TAction,
+  itemType: IDropdown["listType"],
+  onActionClick: (onClick: TAction["onClick"]) => () => void,
+) {
   const actionClass = cn(styles["list-item"], styles["list-item__text"], item.className);
   return (
-    <div key={item.id} className={actionClass} onClick={item.onClick}>
+    <div key={item.id} className={actionClass} onClick={onActionClick(item.onClick)}>
       {item.label}
     </div>
   );
@@ -82,11 +92,12 @@ export default function Dropdown(props: IDropdown) {
   const {
     placeholder,
     buttonType = "outline",
-    dynamicPlaceholder = true,
+    dynamicTitle = true,
     disabled = false,
     dropdownTitle,
     listType = "list",
     listPosition = "left",
+    noHightlights = false,
     items,
     actions,
     onClick,
@@ -118,7 +129,7 @@ export default function Dropdown(props: IDropdown) {
 
   // get the button label
   let buttonLabel: string | null = null;
-  if (dynamicPlaceholder) {
+  if (dynamicTitle) {
     // generate the button label
     const checkedItems = internalItems.filter((item) => item.checked).map((item) => item.label);
     buttonLabel =
@@ -153,6 +164,12 @@ export default function Dropdown(props: IDropdown) {
     }
   };
 
+  const onActionClick = (onClick: TAction["onClick"]) => () => {
+    onClick();
+    // close the list
+    setIsOpen(false);
+  };
+
   const containerClass = cn(styles.container, className, {
     [styles["container--active"]]: isOpen,
   });
@@ -180,11 +197,13 @@ export default function Dropdown(props: IDropdown) {
         <div className={dropdownClass}>
           {dropdownTitle && <span className={styles["dropdown__title"]}>{dropdownTitle}</span>}
           <div className={listItemsClass}>
-            {internalItems.map((item) => createListItem(item, listType, onItemClick))}
+            {internalItems.map((item) =>
+              createListItem(item, listType, onItemClick, noHightlights),
+            )}
           </div>
           {actions && (
             <div className={listActionClass}>
-              {actions.map((item) => createActionItem(item, listType))}
+              {actions.map((item) => createActionItem(item, listType, onActionClick))}
             </div>
           )}
         </div>
