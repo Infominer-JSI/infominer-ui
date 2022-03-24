@@ -48,6 +48,7 @@
     --color-pill-loading: var(--color-blue-light);
     --color-pill-waiting: var(--color-gray-light);
     --color-pill-warning: var(--color-pink);
+    --color-pill-highlight: var(--color-blue);
 
     // color button variables
     --color-button-base: var(--color-blue);
@@ -124,6 +125,7 @@
 
   *::-webkit-scrollbar {
     width: var(--width-scrollbar-sm);
+    height: var(--width-scrollbar-md);
   }
 
   *::-webkit-scrollbar-track {
