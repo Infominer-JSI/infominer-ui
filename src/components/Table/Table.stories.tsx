@@ -7,7 +7,7 @@ import Button from "components/Button";
 import Dropdown from "components/Dropdown";
 
 // import the formatters
-import { formatNumber, formatString } from "utils/formatters";
+import { formatNumber, formatString, formatDate } from "utils/formatters";
 import { wrapperPill } from "utils/wrappers";
 
 // ==============================================
@@ -44,9 +44,10 @@ Default.args = {
     },
     { dataKey: "profession", label: "profession", headerFormatter: (label) => formatString(label) },
     {
-      dataKey: "livesIn",
-      label: "thisIs_aComplex_label",
+      dataKey: "bornedOn",
+      label: "ThePerson_was_bornedOn",
       headerFormatter: (label) => formatString(label),
+      dataFormatter: (data) => formatDate(data),
     },
     { dataKey: "worksAt", label: "Works At" },
     {
@@ -57,10 +58,42 @@ Default.args = {
     },
   ],
   data: [
-    { id: 1, name: "Charlie", surname: "Chaplin", age: 45, profession: "Comedian", active: "Yes" },
-    { id: 2, name: "Ronnie", surname: "Barker", age: 23, profession: "Comedian", active: "Yes" },
-    { id: 3, name: "Peter", surname: "Sellers", age: 10, profession: "Comedian", active: "Yes" },
-    { id: 4, name: "Spike", surname: "Milligan", age: 55, profession: "Comedian", active: "Yes" },
+    {
+      id: 1,
+      name: "Charlie",
+      surname: "Chaplin",
+      age: 45,
+      profession: "Comedian",
+      active: "Yes",
+      bornedOn: "2022-12-01",
+    },
+    {
+      id: 2,
+      name: "Ronnie",
+      surname: "Barker",
+      age: 23,
+      profession: "Comedian",
+      active: "Yes",
+      bornedOn: "2022-03-01T12:00:00Z",
+    },
+    {
+      id: 3,
+      name: "Peter",
+      surname: "Sellers",
+      age: 10,
+      profession: "Comedian",
+      active: "Yes",
+      bornedOn: "1944-11-03",
+    },
+    {
+      id: 4,
+      name: "Spike",
+      surname: "Milligan",
+      age: 55,
+      profession: "Comedian",
+      active: "Yes",
+      bornedOn: "1991-01-01T14:02:10Z",
+    },
     {
       id: 5,
       name: "Rowan",
@@ -68,6 +101,7 @@ Default.args = {
       age: 76,
       profession: "Comedian Comedian Comedian Comedian",
       active: "No",
+      bornedOn: "1991-01-01T14:02:10Z",
     },
     { id: 6, name: "David", surname: "Jason", age: 1, profession: "Comedian", active: "Yes" },
     {
@@ -77,6 +111,7 @@ Default.args = {
       age: 100000000,
       profession: "Comedian",
       active: "No",
+      bornedOn: 124632120450,
     },
     { id: 8, name: "Caroline", surname: "Aherne", age: 20, profession: "Comedian", active: "No" },
     {
@@ -144,4 +179,5 @@ Default.args = {
       </Button>
     </React.Fragment>
   ),
+  showRowCheckbox: true,
 };
