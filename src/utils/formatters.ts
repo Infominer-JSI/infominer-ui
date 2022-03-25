@@ -1,10 +1,10 @@
 /**
  * Formats the value into the appropriate format.
  * @param value - The value to be formated.
- * @param locale - The locale in which to format the string in.
+ * @param locale - The locale in which to format the value in.
  * @returns The formatted number.
  */
-export function formatNumber(value: null | number | string, locale = undefined) {
+export function formatNumber(value: null | number | string, locale = navigator.language) {
   if (!value) return value;
   // get the number that will be used to format
   const number = typeof value === "string" ? parseFloat(value) : value;
@@ -67,4 +67,24 @@ export function formatString(string: string, commands = "S[CC]/S[US]/T[LC]/T[CP]
     }
   }
   return currentStr;
+}
+
+/**
+ * Formats the value into the appropriate date format.
+ * @param value - The string or number used to be formatted.
+ * @param locale - The locale in which to format the value in.
+ * @returns The formatted date.
+ */
+export function formatDate(value: string | number, locale = navigator.language) {
+  const date = new Date(value);
+  if (date instanceof Date && isNaN(date.valueOf())) return;
+  return date.toLocaleString(locale, {
+    timeZone: "UTC",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+  });
 }
