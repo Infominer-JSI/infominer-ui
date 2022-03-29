@@ -66,6 +66,7 @@ export default function ResponsiveGrid(props: IResponsiveGrid) {
   // Setup the responsive grid hooks
   // ============================================
 
+  // defines how the components gets the default grid configuration
   const getDefaultGrid = useCallback(() => {
     const defaultGrid: IGrid = getFromLS(layoutKey, GRID_LS_KEY) ?? {};
     if (Object.keys(defaultGrid).length === 0) {
@@ -78,7 +79,7 @@ export default function ResponsiveGrid(props: IResponsiveGrid) {
     return defaultGrid;
   }, [props.children, layoutKey]);
 
-  // state the layouts and toolbox
+  // set the grid and toolbox
   const [grid, setGrid] = useState<IGrid>(getDefaultGrid());
   const [toolbox, setToolbox] = useState<IToolboxItem[]>(
     getFromLS(layoutKey, TOOL_LS_KEY) ?? toolboxItems.map((item) => ({ ...item, active: true })),
@@ -94,7 +95,8 @@ export default function ResponsiveGrid(props: IResponsiveGrid) {
   // Initialize the variables
   // ============================================
 
-  function onHideItem(item: IToolboxItem) {
+  // hides the associated grid elements
+  function __onHideItem(item: IToolboxItem) {
     // get the grid items for all sizes available
     const gridItems: { [key: string]: IGridItem } = {};
     for (const bp in grid) {
@@ -103,30 +105,36 @@ export default function ResponsiveGrid(props: IResponsiveGrid) {
         gridItems[bp] = grid[bp][gridItemIdx];
       }
     }
-    // update the toolbox by adding tyhe
+    // update the toolbox
     setToolbox((prevState) => {
       const idx = prevState.map((item) => item.id).indexOf(item.id);
       const updatedItem = {
         ...prevState[idx],
         active: false,
+        // save the missing grid element specs
         grid: gridItems,
       };
       return [...prevState.slice(0, idx), updatedItem, ...prevState.slice(idx + 1)];
     });
+    // update the grid values
     setGrid((prevState) => {
       const newState: { [key: string]: IGridItem[] } = {};
       for (const bp in prevState) {
+        // remove the hidden grid elements
         newState[bp] = prevState[bp].filter((xitem) => xitem.i !== item.id);
       }
       return newState;
     });
   }
 
-  function onShowItem(item: IToolboxItem) {
+  // shows the associated grid elements
+  function __onShowItem(item: IToolboxItem) {
+    // get the hidden grid element specs
     const toolboxItem = toolbox.filter((xitem) => xitem.id === item.id);
     const gridItems: { [key: string]: IGridItem } = toolboxItem.length
       ? (toolboxItem[0].grid as { [key: string]: IGridItem })
       : {};
+    // update the toolbox
     setToolbox((prevState) => {
       const idx = prevState.map((item) => item.id).indexOf(item.id);
       const updatedItem = {
@@ -136,44 +144,47 @@ export default function ResponsiveGrid(props: IResponsiveGrid) {
       };
       return [...prevState.slice(0, idx), updatedItem, ...prevState.slice(idx + 1)];
     });
-
+    // update the grid
     setGrid((prevState) => {
       const newState: { [key: string]: IGridItem[] } = {};
       for (const bp in prevState) {
+        // add the hidden grid elements
         newState[bp] = [...prevState[bp], gridItems[bp]];
       }
       return newState;
     });
   }
 
+  // handles the show/hide specification
   function onClickItem(item: IToolboxItem) {
-    item.active ? onHideItem(item) : onShowItem(item);
+    item.active ? __onHideItem(item) : __onShowItem(item);
   }
 
-  // save the layout change
+  // save the layout change in the browser's local storage
   function onLayoutChange(_layout: any, xlayouts: any) {
     saveToLS(layoutKey, GRID_LS_KEY, xlayouts);
     saveToLS(layoutKey, TOOL_LS_KEY, toolbox);
     setGrid(xlayouts);
   }
 
+  // save the breakpoint when it changes
   function onBreakpointChange(bp: string) {
     setBreakpoint(bp);
   }
 
   // set the class name of the responsive layout
-  const className = cn("layout", props.className);
+  const containerClass = cn(props.className);
 
   // ============================================
   // Visualize the component
   // ============================================
   return (
-    <React.Fragment>
+    <div className={containerClass}>
       {toolbox.length ? (
         <Toolbox title={toolboxTitle} items={toolbox} onClickItem={onClickItem} />
       ) : null}
       <ResponsiveGridLayout
-        className={className}
+        className="layout"
         onBreakpointChange={onBreakpointChange}
         containerPadding={responsiveCp}
         breakpoints={responsiveBp}
@@ -181,7 +192,7 @@ export default function ResponsiveGrid(props: IResponsiveGrid) {
         layouts={grid}
         isBounded={true}
         margin={[16, 16]}
-        rowHeight={100}
+        rowHeight={76}
         resizeHandles={["se", "e", "s"]}
         onLayoutChange={onLayoutChange}>
         {grid[breakpoint].map((item: any) => (
@@ -190,7 +201,7 @@ export default function ResponsiveGrid(props: IResponsiveGrid) {
           </div>
         ))}
       </ResponsiveGridLayout>
-    </React.Fragment>
+    </div>
   );
 }
 
