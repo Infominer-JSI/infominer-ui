@@ -28,3 +28,7 @@
 .status--warning {
   @apply bg-pill-warning text-inverted;
 }
+
+.status--highlight {
+  @apply bg-pill-highlight text-inverted;
+}

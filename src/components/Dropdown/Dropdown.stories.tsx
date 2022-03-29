@@ -43,7 +43,7 @@ const advancedPlaceholder = (
 export const ComplexPlaceholder = Template.bind({});
 ComplexPlaceholder.args = {
   placeholder: advancedPlaceholder,
-  dynamicPlaceholder: false,
+  dynamicTitle: false,
   items: [
     { id: "a", label: "Subset Name 1" },
     { id: "b", label: "Subset Name 2" },

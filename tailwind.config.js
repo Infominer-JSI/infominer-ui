@@ -100,6 +100,7 @@ module.exports = {
           loading: withOpacity("--color-pill-loading"),
           waiting: withOpacity("--color-pill-waiting"),
           warning: withOpacity("--color-pill-warning"),
+          highlight: withOpacity("--color-pill-highlight"),
         },
         button: {
           base: withOpacity("--color-button-base"),
@@ -126,6 +127,9 @@ module.exports = {
         scrollbar: {
           track: withOpacity("--color-scrollbar-track"),
           thumb: withOpacity("--color-scrollbar-thumb"),
+        },
+        grid: {
+          placeholder: withOpacity("--color-grid-base"),
         },
       },
       borderColor: {

@@ -8,9 +8,9 @@ import styles from "./Pill.module.scss";
 // Define the state interfaces
 //===============================================
 
-interface IPill {
+export interface IPill {
   type: "block" | "round";
-  status?: "ready" | "loading" | "waiting" | "warning";
+  status?: "ready" | "loading" | "waiting" | "warning" | "highlight";
   className?: string;
   children?: React.ReactNode;
 }
@@ -44,6 +44,8 @@ function getStatusClass(status?: IPill["status"]) {
       return styles["status--waiting"];
     case "warning":
       return styles["status--warning"];
+    case "highlight":
+      return styles["status--highlight"];
     default:
       return styles["status--default"];
   }
