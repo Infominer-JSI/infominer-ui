@@ -17,7 +17,6 @@ import { wrapperPill } from "utils/wrappers";
 const storyComponent = {
   component: Table,
   title: "Components/Table",
-  decorators: [(Story: any) => <Story />],
 };
 
 export default storyComponent;

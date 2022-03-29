@@ -1,0 +1,68 @@
+@mixin borderStyle($border) {
+  @apply #{$border}-2 border-solid border-divide-base;
+}
+
+.react-grid-item {
+  @apply bg-skin-base;
+  @apply rounded;
+  @apply shadow;
+  & > .react-resizable-handle::after {
+    @include borderStyle("border-r");
+    @include borderStyle("border-b");
+  }
+
+  .react-resizable-handle {
+    background-image: none;
+    &::after {
+      @apply w-2.5 h-2.5;
+      @apply rounded;
+      @include borderStyle("border-r");
+      @include borderStyle("border-b");
+      clip: rect(5px, 13px, 13px, 5px);
+    }
+
+    &.react-resizable-handle-e,
+    &.react-resizable-handle-s,
+    &.react-resizable-handle-w,
+    &.react-resizable-handle-n {
+      @apply w-2.5 h-2.5 m-1 p-0 transform-none;
+    }
+    &.react-resizable-handle-e,
+    &.react-resizable-handle-w {
+      top: calc(50% - 10px);
+    }
+    &.react-resizable-handle-n,
+    &.react-resizable-handle-s {
+      left: calc(50% - 10px);
+    }
+    &.react-resizable-handle-e {
+      @include borderStyle("border-r");
+    }
+    &.react-resizable-handle-s {
+      @include borderStyle("border-b");
+    }
+    &.react-resizable-handle-w {
+      @include borderStyle("border-l");
+    }
+    &.react-resizable-handle-n {
+      @include borderStyle("border-t");
+    }
+    &.react-resizable-handle-e::after,
+    &.react-resizable-handle-s::after,
+    &.react-resizable-handle-w::after,
+    &.react-resizable-handle-n::after {
+      @apply border-0;
+    }
+  }
+
+  &.react-grid-placeholder {
+    @apply bg-grid-placeholder;
+  }
+
+  .box {
+    @apply relative;
+    @apply flex flex-col;
+    @apply m-2;
+    height: inherit;
+  }
+}

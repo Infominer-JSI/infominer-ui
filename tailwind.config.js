@@ -128,6 +128,9 @@ module.exports = {
           track: withOpacity("--color-scrollbar-track"),
           thumb: withOpacity("--color-scrollbar-thumb"),
         },
+        grid: {
+          placeholder: withOpacity("--color-grid-base"),
+        },
       },
       borderColor: {
         button: {

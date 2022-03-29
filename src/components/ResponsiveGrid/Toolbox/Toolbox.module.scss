@@ -1,0 +1,16 @@
+.toolbox {
+  @apply flex flex-col flex-wrap gap-2 p-2;
+  @apply rounded;
+  @apply bg-skin-base;
+  @apply shadow;
+
+  @apply sm:flex-row;
+}
+
+.toolbox__title {
+  @apply font-body font-semibold text-base text-xs;
+}
+
+.toolbox__items {
+  @apply flex flex-1 flex-row flex-wrap gap-2;
+}
